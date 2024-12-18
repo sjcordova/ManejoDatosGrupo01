@@ -1,28 +1,38 @@
 ﻿using ManejoDatosGrupo01.Interfaces;
 using ManejoDatosGrupo01.Models;
 using ManejoDatosGrupo01.Repositories;
+using ManejoDatosGrupo01.ViewModels;
 
 namespace ManejoDatosGrupo01
 {
     public partial class MainPage : ContentPage
     {
-        IEstudianteUDLARepository _estudianteUDLARepository;
-        EstudianteUDLA estudiante = new EstudianteUDLA();
+        //IEstudianteUDLARepository _estudianteUDLARepository;
+        //EstudianteUDLA estudiante = new EstudianteUDLA();
 
         public MainPage()
         {
-            _estudianteUDLARepository = new EstudianteUDLAPorArchivosRepository();
+            /*_estudianteUDLARepository = new EstudianteUDLASQLiteRepository();
             InitializeComponent();
 
 
             estudiante = _estudianteUDLARepository.DevuelveEstudianteUDLA(1);
 
-            BindingContext = estudiante;
+            BindingContext = estudiante;*/
+
+            InitializeComponent();
+            var viewModel = new EstudianteUDLAViewModel();
+            BindingContext = viewModel;
+
+            viewModel.ShowAlert += async () =>
+            {
+                await DisplayAlert("Alerta", "¡Se ha cambiado el mensaje!", "OK");
+            };
         }
 
 
 
-        private async void GuardarEstudiante_Clicked(object sender, EventArgs e)
+        /*private async void GuardarEstudiante_Clicked(object sender, EventArgs e)
         {
             EstudianteUDLA estudiante = new EstudianteUDLA
             {
@@ -43,7 +53,7 @@ namespace ManejoDatosGrupo01
                 await DisplayAlert("Alerta", "Negado mi pana", "OK");
             }
 
-        }
+        }*/
 
     }
 
